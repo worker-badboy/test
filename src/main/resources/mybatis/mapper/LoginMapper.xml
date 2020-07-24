@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unluckyworker.appointment.dao.LoginMapper">
+    <select id="queryLoginList" resultType="Login">
+        select * from test.login
+    </select>
+
+    <select id="queryLoginById" resultType="Login">
+        select * from test.login where id = #{id}
+    </select>
+
+    <insert id="addLogin" parameterType="Login">
+        insert into test.login (id, password) values (#{id},#{password})
+    </insert>
+
+    <update id="updateLogin" parameterType="Login">
+        update test.login set password = #{password} where id = #{id}
+    </update>
+
+    <delete id="deleteLoginById" parameterType="int">
+        delete from test.login where id = #{id}
+    </delete>
+
+</mapper>
