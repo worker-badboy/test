@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unluckyworker.appointment.dao.DoctorMapper">
+    <select id="queryDoctorList" resultType="Doctor">
+        select * from test.doctor
+    </select>
+
+    <select id="queryDoctorById" resultType="Doctor">
+        select * from test.doctor where did = #{did}
+    </select>
+
+    <select id="queryHospital" resultType="String">
+        select distinct hospital from test.doctor
+    </select>
+
+    <select id="queryDepartment" resultType="String" parameterType="String">
+        select distinct department from test.doctor where hospital = #{hospital}
+    </select>
+
+    <select id="queryDoctorByDepartment" resultType="Doctor">
+        select * from test.doctor where hospital = #{hospital} and department = #{department}
+    </select>
+
+    <insert id="addDoctor" parameterType="Doctor">
+        insert into test.doctor (did, dname, title, department, hospital, price)
+            values (#{did},#{dname},#{title},#{department},#{hospital},#{price})
+    </insert>
+
+    <update id="updateDoctor" parameterType="Doctor">
+        update test.doctor set dname = #{dname},title = #{title},
+                           department = #{department},hospital = #{hospital},
+                           price = #{price} where did = #{did}
+    </update>
+
+    <delete id="deleteDoctorById" parameterType="int">
+        delete from test.doctor where did = #{did}
+    </delete>
+
+</mapper>
