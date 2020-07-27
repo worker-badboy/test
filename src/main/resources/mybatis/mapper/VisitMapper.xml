@@ -5,8 +5,8 @@
 <mapper namespace="com.unluckyworker.appointment.dao.VisitMapper">
     <select id="queryVisitById" resultType="java.util.HashMap" parameterType="int">
         select *
-        from test.doctor,test.visit
-        where test.visit.did = #{did} and test.doctor.did = #{did}
+        from test.doctor join test.visit on doctor.did = visit.did
+        where test.visit.did = #{did}
     </select>
 
 </mapper>

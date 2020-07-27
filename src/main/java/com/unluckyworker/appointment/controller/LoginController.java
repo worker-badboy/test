@@ -1,5 +1,6 @@
 package com.unluckyworker.appointment.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.unluckyworker.appointment.dao.LoginMapper;
 import com.unluckyworker.appointment.pojo.Login;
 import io.swagger.annotations.ApiImplicitParam;
@@ -27,23 +28,23 @@ public class LoginController {
 
     @PostMapping("/queryLoginById")
     @ApiOperation("根据id查询账号")
-    @ApiImplicitParam(name = "id", value = "登陆id", dataType = "int", required = true)
-    public Login queryLoginById(@RequestBody int id) {
+    @ApiImplicitParam(name = "id", value = "登陆id", dataType = "int")
+    public Login queryLoginById(int id) {
+
         Login login = loginMapper.queryLoginById(id);
-        System.out.println(id);
         return login;
     }
 
     @PostMapping("/addLogin")
     @ApiOperation("添加一个登陆账号")
-    public int addLogin(@RequestBody Login login) {
+    public int addLogin(Login login) {
         int i = loginMapper.addLogin(login);
         return i;
     }
 
     @PostMapping("/updateLogin")
     @ApiOperation("更新一个登陆账号")
-    public int updateLogin(@RequestBody Login login) {
+    public int updateLogin(Login login) {
         int i = loginMapper.updateLogin(login);
         return i;
     }
@@ -51,7 +52,7 @@ public class LoginController {
     @PostMapping("/deleteLoginById")
     @ApiOperation("删除一个登陆账号")
     @ApiImplicitParam(name = "id", value = "登陆id", dataType = "int", required = true)
-    public int deleteLoginById(@RequestBody int id) {
+    public int deleteLoginById(int id) {
         int i = loginMapper.deleteLoginById(id);
         return i;
     }

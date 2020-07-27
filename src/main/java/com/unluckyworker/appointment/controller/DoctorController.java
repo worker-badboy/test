@@ -31,21 +31,21 @@ public class DoctorController {
     @PostMapping("/queryDoctorById")
     @ApiOperation("根据医生id查询医生信息")
     @ApiImplicitParam(name = "did", value = "医生工号", dataType = "int")
-    public Doctor queryDoctorById(@RequestBody int did) {
+    public Doctor queryDoctorById(int did) {
         Doctor doctor = doctorMapper.queryDoctorById(did);
         return doctor;
     }
 
     @PostMapping("/addDoctor")
     @ApiOperation("增加医生")
-    public int addDoctor(@RequestBody Doctor doctor) {
+    public int addDoctor(Doctor doctor) {
         int i = doctorMapper.addDoctor(doctor);
         return i;
     }
 
     @PostMapping("/updateDoctor")
     @ApiOperation("修改医生信息")
-    public int updateDoctor(@RequestBody Doctor doctor) {
+    public int updateDoctor(Doctor doctor) {
         int i = doctorMapper.updateDoctor(doctor);
         return i;
     }
@@ -53,7 +53,7 @@ public class DoctorController {
     @PostMapping("/deleteDoctorById")
     @ApiOperation("根据医生id删除医生")
     @ApiImplicitParam(name = "did", value = "医生工号", dataType = "int")
-    public int deleteDoctorById(@RequestBody int did) {
+    public int deleteDoctorById(int did) {
         int i = doctorMapper.deleteDoctorById(did);
         return i;
     }
@@ -68,7 +68,7 @@ public class DoctorController {
     @PostMapping("/queryDepartment")
     @ApiOperation("查询某个医院的所有科室")
     @ApiImplicitParam(name = "hospital", value = "医院名称", dataType = "string")
-    public List<String> queryDepartment(@RequestBody String hospital) {
+    public List<String> queryDepartment(String hospital) {
         List<String> department = doctorMapper.queryDepartment(hospital);
         return department;
     }
@@ -81,7 +81,7 @@ public class DoctorController {
                     @ApiImplicitParam(name = "department", value = "科室", dataType = "string")
             }
     )
-    public List<Doctor> queryDoctorByDepartment( String hospital,  String department) {
+    public List<Doctor> queryDoctorByDepartment(String hospital, String department) {
         List<Doctor> doctors = doctorMapper.queryDoctorByDepartment(hospital, department);
         return doctors;
     }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +23,7 @@ public class VisitController {
     @PostMapping("/queryVisitById")
     @ApiOperation("根据id获取医生上班信息")
     @ApiImplicitParam(name = "did",value = "医生工号",dataType = "int")
-    public List<Map<String,Object>> queryVisitById(@RequestBody int did){
+    public List<Map<String,Object>> queryVisitById(int did){
         List<Map<String, Object>> maps = visitMapper.queryVisitById(did);
         return maps;
     }
