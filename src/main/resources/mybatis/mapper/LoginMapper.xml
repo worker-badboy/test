@@ -7,7 +7,7 @@
         select * from test.login
     </select>
 
-    <select id="queryLoginById" resultType="Login">
+    <select id="queryLoginById" resultType="Login" parameterType="int">
         select * from test.login where id = #{id}
     </select>
 
