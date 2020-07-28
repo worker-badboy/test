@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unluckyworker.appointment.dao.ReservationMapper">
+    <insert id="addReservation" parameterType="Reservation">
+        insert into test.reservation (did, pid, visitdate, visittime, paytime, pname, pphone, paddress)
+            values (#{did},#{pid},#{visitdate},#{visittime},#{paytime},#{pname},#{pphone},#{paddress})
+    </insert>
+
+    <select id="queryReservationByPatientId" resultType="Reservation">
+        select * from test.reservation where pid = #{pid}
+    </select>
+
+    <select id="queryReservationByDoctorId" resultType="Reservation">
+        select * from test.reservation where did = #{did}
+    </select>
+
+    <select id="queryAllReservation" resultType="Reservation">
+        select * from test.reservation
+    </select>
+</mapper>
