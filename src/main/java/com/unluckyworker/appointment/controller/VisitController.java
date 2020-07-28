@@ -5,6 +5,7 @@ import com.unluckyworker.appointment.pojo.Visit;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,7 +35,7 @@ public class VisitController {
         return maps;
     }
 
-    @PostMapping("/queryVisit")
+    @GetMapping("/queryVisit")
     @ApiOperation("获取全部医生上班信息")
     public List<Map<String,Object>> queryVisit(){
         List<Map<String, Object>> maps = visitMapper.queryVisit();

@@ -58,7 +58,7 @@ public class DoctorController {
         return i;
     }
 
-    @PostMapping("/queryHospital")
+    @GetMapping("/queryHospital")
     @ApiOperation("查询所有医院")
     public List<String> queryHospital() {
         List<String> hospital = doctorMapper.queryHospital();
