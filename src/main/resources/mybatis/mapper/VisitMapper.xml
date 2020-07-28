@@ -9,4 +9,44 @@
         where test.visit.did = #{did}
     </select>
 
+    <select id="queryVisitByVisitdate" resultType="java.util.HashMap" parameterType="java.sql.Date">
+        select *
+        from test.doctor join test.visit on doctor.did = visit.did
+        where test.visit.visitdate = #{visitdate}
+    </select>
+
+    <select id="queryVisit" resultType="java.util.HashMap">
+        select *
+        from test.doctor
+        join test.visit
+        on doctor.did = visit.did
+    </select>
+
+    <insert id="addVisit" parameterType="Visit">
+        insert into test.visit (did, visitdate, visittime, flag)
+        values (#{did},#{visitdate},#{visittime},#{flag})
+    </insert>
+
+    <delete id="deleteVisit" parameterType="Visit">
+        delete from test.visit
+        where did = #{did}
+        and visitdate = #{visitdate}
+        and visittime = #{visittime}
+    </delete>
+
+    <update id="updateFlag" parameterType="Visit">
+        update test.visit
+        set flag = #{flag}
+        where did = #{did}
+        and visitdate = #{visitdate}
+        and visittime = #{visittime}
+    </update>
+
+    <update id="updateVisit">
+        update test.visit
+        set visittime = #{newtime}
+        where did = #{did}
+        and visitdate = #{visitdate}
+        and visittime = #{visittime}
+    </update>
 </mapper>

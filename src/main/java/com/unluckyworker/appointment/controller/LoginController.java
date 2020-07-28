@@ -57,4 +57,11 @@ public class LoginController {
         return i;
     }
 
+    @PostMapping("/queryLogin")
+    @ApiOperation("验证登陆")
+    public boolean queryLogin(Login login){
+        String password = loginMapper.queryLogin(login);
+        return password.equals(login.getPassword());
+    }
+
 }

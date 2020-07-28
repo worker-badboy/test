@@ -7,8 +7,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 import java.sql.Date;
 import java.sql.Time;
+
 
 @Data
 @AllArgsConstructor
@@ -20,7 +22,7 @@ public class Visit {
     @ApiModelProperty("可预约日期")
     private Date visitdate;
     @ApiModelProperty("可预约时间")
-    private Time visittime;
+    private String visittime;
     @ApiModelProperty("是否被预约")
     private int flag;
 }

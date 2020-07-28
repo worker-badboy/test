@@ -11,6 +11,12 @@
         select * from test.login where id = #{id}
     </select>
 
+    <select id="queryLogin" resultType="string" parameterType="Login">
+        select password
+        from test.login
+        where id = #{id}
+    </select>
+
     <insert id="addLogin" parameterType="Login">
         insert into test.login (id, password) values (#{id},#{password})
     </insert>

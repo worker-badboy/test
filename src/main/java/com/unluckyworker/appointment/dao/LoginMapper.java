@@ -14,6 +14,8 @@ public interface LoginMapper {
 
     Login queryLoginById(int id);
 
+    String queryLogin(Login login);
+
     int addLogin(Login login);
 
     int updateLogin(Login login);
