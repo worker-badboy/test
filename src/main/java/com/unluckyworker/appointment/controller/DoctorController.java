@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,7 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
+//@RequestBody @Controller
+@RestController //json
 public class DoctorController {
 
     @Autowired
@@ -27,7 +29,7 @@ public class DoctorController {
         List<Doctor> doctors = doctorMapper.queryDoctorList();
         return doctors;
     }
-
+    //接收的参数就是前端传进来的数据, 我们的返回值就是传给前端的数据
     @PostMapping("/queryDoctorById")
     @ApiOperation("根据医生id查询医生信息")
     @ApiImplicitParam(name = "did", value = "医生工号", dataType = "int")
