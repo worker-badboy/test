@@ -19,14 +19,14 @@ public class LoginController {
     @Autowired
     private LoginMapper loginMapper;
 
-    @GetMapping("/queryLoginList")
+    @GetMapping("/admin/queryLoginList")
     @ApiOperation("查询所有登陆账号")
     public List<Login> queryLoginList() {
         List<Login> logins = loginMapper.queryLoginList();
         return logins;
     }
 
-    @PostMapping("/queryLoginById")
+    @PostMapping("/admin/queryLoginById")
     @ApiOperation("根据id查询账号")
     @ApiImplicitParam(name = "id", value = "登陆id", dataType = "int")
     public Login queryLoginById(int id) {
@@ -35,21 +35,21 @@ public class LoginController {
         return login;
     }
 
-    @PostMapping("/addLogin")
+    @PostMapping("/admin/addLogin")
     @ApiOperation("添加一个登陆账号")
     public int addLogin(Login login) {
         int i = loginMapper.addLogin(login);
         return i;
     }
 
-    @PostMapping("/updateLogin")
+    @PostMapping("/admin/updateLogin")
     @ApiOperation("更新一个登陆账号")
     public int updateLogin(Login login) {
         int i = loginMapper.updateLogin(login);
         return i;
     }
 
-    @PostMapping("/deleteLoginById")
+    @PostMapping("/admin/deleteLoginById")
     @ApiOperation("删除一个登陆账号")
     @ApiImplicitParam(name = "id", value = "登陆id", dataType = "int", required = true)
     public int deleteLoginById(int id) {
@@ -57,7 +57,7 @@ public class LoginController {
         return i;
     }
 
-    @PostMapping("/queryLogin")
+    @PostMapping("/admin/queryLogin")
     @ApiOperation("验证登陆")
     public boolean queryLogin(Login login){
         String password = loginMapper.queryLogin(login);
