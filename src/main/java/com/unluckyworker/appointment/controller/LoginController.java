@@ -3,6 +3,7 @@ package com.unluckyworker.appointment.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.unluckyworker.appointment.dao.LoginMapper;
 import com.unluckyworker.appointment.pojo.Login;
+import com.unluckyworker.appointment.utils.JWTUtils;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -11,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.naming.Name;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class LoginController {
@@ -59,9 +62,19 @@ public class LoginController {
 
     @PostMapping("/admin/queryLogin")
     @ApiOperation("验证登陆")
-    public boolean queryLogin(Login login){
-        String password = loginMapper.queryLogin(login);
-        return password.equals(login.getPassword());
-    }
+    public String queryLogin(Login login){
+        try {
+            String password = loginMapper.queryLogin(login);
+            Map<String, String> map = new HashMap<>();
+            if(password.equals(login.getPassword())){
+                map.put("用户id",String.valueOf(login.getId()));
+                map.put("state","登陆成功");
+                String token = JWTUtils.getToken(map);
+                return token;
+            }
+        }catch (Exception e){
+        }
+        return "账号或密码错误";
+}
 
 }

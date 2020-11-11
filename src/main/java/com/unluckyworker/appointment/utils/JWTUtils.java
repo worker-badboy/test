@@ -22,7 +22,7 @@ public class JWTUtils {
         JWTCreator.Builder builder = JWT.create();
 
         map.forEach((k,v)->{
-            builder.withClaim(k,v);
+            builder.withClaim(k, v);
         });
 
         String token = builder.withExpiresAt(instance.getTime())
