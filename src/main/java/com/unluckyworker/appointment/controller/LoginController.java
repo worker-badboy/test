@@ -35,6 +35,7 @@ public class LoginController {
     public Login queryLoginById(int id) {
 
         Login login = loginMapper.queryLoginById(id);
+        System.out.println(JSONObject.toJSON(login));
         return login;
     }
 
@@ -62,19 +63,25 @@ public class LoginController {
 
     @PostMapping("/admin/queryLogin")
     @ApiOperation("验证登陆")
-    public String queryLogin(Login login){
+    public String queryLogin(@RequestBody JSONObject json){
+        Map<String, Object> res = new HashMap<>();
         try {
-            String password = loginMapper.queryLogin(login);
-            Map<String, String> map = new HashMap<>();
-            if(password.equals(login.getPassword())){
-                map.put("用户id",String.valueOf(login.getId()));
-                map.put("state","登陆成功");
+            String user_password = json.get("password").toString();
+            int user_id = Integer.valueOf(json.get("id").toString());
+            String password = loginMapper.queryLogin(new Login(user_id,user_password));
+            if(password.equals(user_password)){
+                Map<String, String> map = new HashMap<>();
+                map.put("用户id",String.valueOf(user_id));
                 String token = JWTUtils.getToken(map);
-                return token;
+                res.put("code",1);
+                res.put("data",new HashMap<String, String>(){{put("adminToken",token);}});
+            }else {
+                res.put("code",0);
             }
         }catch (Exception e){
+
         }
-        return "账号或密码错误";
+        return JSONObject.toJSONString(res);
 }
 
 }
