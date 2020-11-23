@@ -75,13 +75,13 @@ public class LoginController {
                 Map<String, String> map = new HashMap<>();
                 map.put("用户id",String.valueOf(user_id));
                 String token = JWTUtils.getToken(map);
-                res.put("code",1);
+                res.put("code",0);
                 res.put("data",new HashMap<String, String>(){{put("adminToken",token);}});
             }else {
-                res.put("code",0);
+                res.put("code",1);
             }
         }catch (Exception e){
-
+            res.put("code",1);
         }
         log.info("");
         return JSONObject.toJSONString(res);
