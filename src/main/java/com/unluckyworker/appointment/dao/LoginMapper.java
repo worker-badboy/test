@@ -12,7 +12,7 @@ public interface LoginMapper {
 
     List<Login> queryLoginList();
 
-    Login queryLoginById(int id);
+    Login queryLoginById(String id);
 
     String queryLogin(Login login);
 
@@ -20,5 +20,5 @@ public interface LoginMapper {
 
     int updateLogin(Login login);
 
-    int deleteLoginById(int id);
+    int deleteLoginById(String id);
 }

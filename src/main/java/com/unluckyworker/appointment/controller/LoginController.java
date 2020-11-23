@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @RestController
 public class LoginController {
 
@@ -31,8 +33,8 @@ public class LoginController {
 
     @PostMapping("/admin/queryLoginById")
     @ApiOperation("根据id查询账号")
-    @ApiImplicitParam(name = "id", value = "登陆id", dataType = "int")
-    public Login queryLoginById(int id) {
+    @ApiImplicitParam(name = "id", value = "登陆id", dataType = "String")
+    public Login queryLoginById(String id) {
 
         Login login = loginMapper.queryLoginById(id);
         System.out.println(JSONObject.toJSON(login));
@@ -55,8 +57,8 @@ public class LoginController {
 
     @PostMapping("/admin/deleteLoginById")
     @ApiOperation("删除一个登陆账号")
-    @ApiImplicitParam(name = "id", value = "登陆id", dataType = "int", required = true)
-    public int deleteLoginById(int id) {
+    @ApiImplicitParam(name = "id", value = "登陆id", dataType = "String", required = true)
+    public int deleteLoginById(String id) {
         int i = loginMapper.deleteLoginById(id);
         return i;
     }
@@ -67,7 +69,7 @@ public class LoginController {
         Map<String, Object> res = new HashMap<>();
         try {
             String user_password = json.get("password").toString();
-            int user_id = Integer.valueOf(json.get("id").toString());
+            String user_id = json.get("id").toString();
             String password = loginMapper.queryLogin(new Login(user_id,user_password));
             if(password.equals(user_password)){
                 Map<String, String> map = new HashMap<>();
@@ -81,6 +83,7 @@ public class LoginController {
         }catch (Exception e){
 
         }
+        log.info("");
         return JSONObject.toJSONString(res);
 }
 

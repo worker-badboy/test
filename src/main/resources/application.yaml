@@ -7,4 +7,10 @@ spring:
 mybatis:
   type-aliases-package: com.unluckyworker.appointment.pojo
   mapper-locations: classpath:mybatis/mapper/*.xml
-
+logging:
+  file:
+    name: operation.log
+    path: classpath
+  pattern:
+    file: "%-5level  %msg%n"
+    console: "%-5level  %msg%n"

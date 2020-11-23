@@ -7,7 +7,7 @@
         select * from test.login
     </select>
 
-    <select id="queryLoginById" resultType="Login" parameterType="int">
+    <select id="queryLoginById" resultType="Login" parameterType="String">
         select * from test.login where id = #{id}
     </select>
 
@@ -25,7 +25,7 @@
         update test.login set password = #{password} where id = #{id}
     </update>
 
-    <delete id="deleteLoginById" parameterType="int">
+    <delete id="deleteLoginById" parameterType="String">
         delete from test.login where id = #{id}
     </delete>
 

@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class Login {
 
     @ApiModelProperty("用户名")
-    private int id;
+    private String id;
     @ApiModelProperty("密码")
     private String password;
 }
