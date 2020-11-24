@@ -8,9 +8,8 @@ mybatis:
   type-aliases-package: com.unluckyworker.appointment.pojo
   mapper-locations: classpath:mybatis/mapper/*.xml
 logging:
-  file:
-    name: operation.log
-    path: classpath
+  # file:
+    # name: D:\tomcat\apache-tomcat-9.0.34\webapps\appointment\WEB-INF\classes\appointment.log
   pattern:
     file: "%-5level  %msg%n"
     console: "%-5level  %msg%n"
