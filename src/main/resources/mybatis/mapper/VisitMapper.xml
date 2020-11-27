@@ -49,4 +49,18 @@
         and visitdate = #{visitdate}
         and visittime = #{visittime}
     </update>
+
+    <update id="updateOneVisit" parameterType="Visit">
+        update test.visit
+        set flag = #{flag}
+        where did = #{did}
+        and visitdate = #{visitdate}
+        and visittime = #{visittime}
+    </update>
+
+    <select id="getNext7DaysVisit" resultType="Visit">
+        select * from test.visit
+        where did = #{did}
+        and visitdate between #{fromDate} and #{toDate}
+    </select>
 </mapper>
