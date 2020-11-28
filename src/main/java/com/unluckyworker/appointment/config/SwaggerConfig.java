@@ -16,6 +16,7 @@ import java.util.ArrayList;
 @EnableSwagger2
 public class SwaggerConfig {
 
+    //测试idea绑定GitHub
     @Bean
     public Docket docket() {
         return (new Docket(DocumentationType.SWAGGER_2)).apiInfo(this.apiInfo()).groupName("unluckyworker").enable(true).select().apis(RequestHandlerSelectors.basePackage("com.unluckyworker.appointment.controller")).build();
