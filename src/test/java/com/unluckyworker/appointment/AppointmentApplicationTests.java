@@ -10,12 +10,10 @@ import javax.sql.DataSource;
 @SpringBootTest
 class AppointmentApplicationTests {
 
-    @Autowired
-    private WXController wxController;
 
     @Test
     void contextLoads() {
-        System.out.println(wxController.getAppid());
+
     }
 
 }

@@ -152,8 +152,9 @@ public class VisitController {
             String fromDate = format.format(calendar.getTime());
             calendar.add(Calendar.DATE, 6);
             String toDate = format.format(calendar.getTime());
-
             List<Visit> visits = visitMapper.getNext7DaysVisit(did, fromDate, toDate);
+            System.out.println(visits);
+
             List<Object> list = new ArrayList<>();
             for (Visit visit : visits) {
                 list.add(JSONObject.toJSON(visit));

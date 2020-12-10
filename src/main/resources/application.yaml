@@ -21,5 +21,5 @@ oauth:
     appid: wx31acf030b5461d5e
     appsecret: 41e394d02e3c3238dbbf19338735654f
   callback:
-    https: https://wsyy.jzxzkyy.com:9443/appointment/wxcallback
+    https: https://wsyy.jzxzkyy.com/appointment/wx/callback
 

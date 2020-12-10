@@ -11,7 +11,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.http.server.reactive.HttpHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -23,6 +26,7 @@ import java.util.List;
 @Controller
 @Data
 @ConfigurationProperties(prefix = "oauth")
+@CrossOrigin
 public class WXController {
 
     @Value("${oauth.wx.appid}")
@@ -38,11 +42,9 @@ public class WXController {
     private String openID;
 
     @GetMapping("/wx/checkSignature")
-    public boolean checkSignature(HttpServletRequest request){
+    @ResponseBody
+    public String checkSignature(String signature, String timestamp, String nonce, String echostr) {
 
-        String signature = request.getHeader("signature");
-        String timestamp = request.getHeader("timestamp");
-        String nonce = request.getHeader("nonce");
         String token = "wxtoken";
         List<String> list = new ArrayList<>();
         list.add(token);
@@ -50,11 +52,11 @@ public class WXController {
         list.add(timestamp);
         Collections.sort(list);
         StringBuilder sb = new StringBuilder();
-        for(String s : list){
+        for (String s : list) {
             sb.append(s);
         }
         String res = DigestUtils.sha1Hex(sb.toString());
-        return res.equals(signature);
+        return res.equals(signature) ? echostr : "";
     }
 
     @GetMapping("/wx/login")
@@ -65,7 +67,7 @@ public class WXController {
                 "&response_type=code" +
                 "&scope=snsapi_userinfo" +
                 "&state=STATE#wechat_redirect";
-        return "redirect_uri:" + url;
+        return "redirect:" + url;
     }
 
     @GetMapping("/wx/callback")
@@ -93,12 +95,13 @@ public class WXController {
 
         // 微信帐号做来一个关联，来关联我们的账号体系
         // 此处实现自己的保存用户信息逻辑
-        return "redirect:/gohome?openid=" + openID;
+        return "redirect:/wx/gohome?openid=" + openID;
     }
 
     @GetMapping("/wx/gohome")
-    public String gohome(String openID){
-        return openID;
+    @ResponseBody
+    public String gohome(String openid) {
+        return openid;
     }
 
 }
