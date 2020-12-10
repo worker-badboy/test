@@ -1,6 +1,6 @@
 package com.unluckyworker.appointment.pojo;
 
-import io.swagger.annotations.Api;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 
 import java.sql.Date;
-import java.sql.Time;
+
 
 
 @Data

@@ -153,10 +153,20 @@ public class VisitController {
             calendar.add(Calendar.DATE, 6);
             String toDate = format.format(calendar.getTime());
             List<Visit> visits = visitMapper.getNext7DaysVisit(did, fromDate, toDate);
-            System.out.println(visits);
 
-
-
+            if(visits.isEmpty()){
+                calendar.add(Calendar.DATE, -6);
+                for(int i = 0 ; i <= 6 ; i++){
+                    visitMapper.addVisit(new Visit(did, new Date(calendar.getTime().getTime()),"上午",0));
+                    visitMapper.addVisit(new Visit(did, new Date(calendar.getTime().getTime()),"下午",0));
+                    calendar.add(Calendar.DATE, 1);
+                }
+            }
+            calendar.add(Calendar.DATE, -6);
+            fromDate = format.format(calendar.getTime());
+            calendar.add(Calendar.DATE, 6);
+            toDate = format.format(calendar.getTime());
+            visits = visitMapper.getNext7DaysVisit(did, fromDate, toDate);
             List<Object> list = new ArrayList<>();
             for (Visit visit : visits) {
                 list.add(JSONObject.toJSON(visit));
