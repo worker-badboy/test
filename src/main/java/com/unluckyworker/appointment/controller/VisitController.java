@@ -155,6 +155,8 @@ public class VisitController {
             List<Visit> visits = visitMapper.getNext7DaysVisit(did, fromDate, toDate);
             System.out.println(visits);
 
+
+
             List<Object> list = new ArrayList<>();
             for (Visit visit : visits) {
                 list.add(JSONObject.toJSON(visit));
