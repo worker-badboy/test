@@ -4,12 +4,22 @@ spring:
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
+
 mybatis:
   type-aliases-package: com.unluckyworker.appointment.pojo
   mapper-locations: classpath:mybatis/mapper/*.xml
+
 logging:
   # file:
     # name: D:\tomcat\apache-tomcat-9.0.34\webapps\appointment\WEB-INF\classes\appointment.log
   pattern:
     file: "%-5level  %msg%n"
     console: "%-5level  %msg%n"
+
+oauth:
+  wx:
+    appid: wx31acf030b5461d5e
+    appsecret: 41e394d02e3c3238dbbf19338735654f
+  callback:
+    https: https://wsyy.jzxzkyy.com:9443/appointment/wxcallback
+

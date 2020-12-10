@@ -42,6 +42,10 @@ public class JWTInterceptor implements HandlerInterceptor {
         String json = new ObjectMapper().writeValueAsString(map);
 
         response.setContentType("application/json;charset=UTF-8");
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
 
         response.getWriter().println(json);
 

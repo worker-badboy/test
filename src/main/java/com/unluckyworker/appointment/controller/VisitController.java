@@ -7,7 +7,7 @@ import com.unluckyworker.appointment.pojo.Doctor;
 import com.unluckyworker.appointment.pojo.Visit;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
-import javafx.beans.binding.ObjectExpression;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
