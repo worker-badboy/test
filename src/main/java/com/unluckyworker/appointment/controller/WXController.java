@@ -26,7 +26,7 @@ import java.util.List;
 @Controller
 @Data
 @ConfigurationProperties(prefix = "oauth")
-@CrossOrigin
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class WXController {
 
     @Value("${oauth.wx.appid}")

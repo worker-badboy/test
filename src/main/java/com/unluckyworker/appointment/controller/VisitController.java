@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class VisitController {
 
     @Autowired
@@ -157,8 +157,8 @@ public class VisitController {
             if(visits.isEmpty()){
                 calendar.add(Calendar.DATE, -6);
                 for(int i = 0 ; i <= 6 ; i++){
-                    visitMapper.addVisit(new Visit(did, new Date(calendar.getTime().getTime()),"上午",0));
-                    visitMapper.addVisit(new Visit(did, new Date(calendar.getTime().getTime()),"下午",0));
+                    visitMapper.addVisit(new Visit(did, new Date(calendar.getTime().getTime()),"上午",1));
+                    visitMapper.addVisit(new Visit(did, new Date(calendar.getTime().getTime()),"下午",1));
                     calendar.add(Calendar.DATE, 1);
                 }
             }

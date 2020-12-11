@@ -21,15 +21,19 @@ import java.util.Map;
 
 @Component
 @Slf4j
-@CrossOrigin
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class JWTInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         response.setContentType("application/json;charset=UTF-8");
         response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Methods", "*");
         response.setHeader("Access-Control-Max-Age", "3600");
-        response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
+        response.setHeader("Access-Control-Allow-Headers", "*");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+//        response.setHeader("Access-Control-Max-Age", "86400");
+
+
         Map<String, Object> map = new HashMap<>();
         String token = request.getHeader("adminToken");
         try {

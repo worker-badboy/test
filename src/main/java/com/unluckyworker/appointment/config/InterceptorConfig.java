@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-@CrossOrigin
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class InterceptorConfig implements WebMvcConfigurer {
 
     @Override

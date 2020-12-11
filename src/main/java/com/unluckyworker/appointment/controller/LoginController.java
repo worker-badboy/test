@@ -19,7 +19,7 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class LoginController {
 
     @Autowired
