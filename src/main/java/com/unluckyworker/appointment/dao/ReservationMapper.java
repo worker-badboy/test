@@ -12,9 +12,13 @@ public interface ReservationMapper {
 
     int addReservation(Reservation reservation);
 
+    List<Reservation> getReservationByOpenid(String openid);
+
     List<Reservation> queryReservationByPatientId(String pid);
 
     List<Reservation> queryReservationByDoctorId(int did);
 
     List<Reservation> queryAllReservation();
+
+
 }

@@ -61,27 +61,26 @@ public class JWTInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        String ip = request.getHeader("x-forwarded-for");
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("Proxy-Client-IP");
-        }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("WL-Proxy-Client-IP");
-        }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getRemoteAddr();
-        }
-        Date day = new Date();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String time = df.format(day);
-        Enumeration enu = request.getParameterNames();
-        StringBuffer sb = new StringBuffer();
-        while (enu.hasMoreElements()) {
-            String paraName = (String) enu.nextElement();
-            sb.append(paraName + ": " + request.getParameter(paraName) + "  ");
-        }
-        log.info("时间：{}  ip:{}  请求方法：{}  请求参数：{}", time, ip, request.getServletPath(), sb.toString());
-
+//        String ip = request.getHeader("x-forwarded-for");
+//        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+//            ip = request.getHeader("Proxy-Client-IP");
+//        }
+//        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+//            ip = request.getHeader("WL-Proxy-Client-IP");
+//        }
+//        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+//            ip = request.getRemoteAddr();
+//        }
+//        Date day = new Date();
+//        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        String time = df.format(day);
+////        Enumeration enu = request.getParameterNames();
+////        StringBuffer sb = new StringBuffer();
+////        while (enu.hasMoreElements()) {
+////            String paraName = (String) enu.nextElement();
+////            sb.append(paraName + ": " + request.getParameter(paraName) + "  ");
+////        }
+//        log.info("时间：{}  ip:{}  请求方法：{} ", time, ip, request.getServletPath());
 
     }
 }

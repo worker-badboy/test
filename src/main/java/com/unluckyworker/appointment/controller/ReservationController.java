@@ -1,15 +1,16 @@
 package com.unluckyworker.appointment.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.unluckyworker.appointment.dao.ReservationMapper;
 import com.unluckyworker.appointment.pojo.Reservation;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -18,11 +19,32 @@ public class ReservationController {
     @Autowired
     private ReservationMapper reservationMapper;
 
-    @PostMapping("/addReservation")
-    @ApiOperation("插入新预约")
-    public int addReservation(Reservation reservation){
-        int i = reservationMapper.addReservation(reservation);
-        return i;
+    @PostMapping("/wx/addReservation")
+    public String addReservation(@RequestBody Reservation reservation){
+        int code = 1;
+        try {
+            reservationMapper.addReservation(reservation);
+            code = 0;
+        }catch (Exception e){}
+        return JSONObject.toJSONString(code);
+    }
+
+    @GetMapping("/wx/getReservationByOpenid")
+    public String getReservationByOpenid(String openid){
+        int code = 1;
+        Map<String, Object> res = new HashMap<>();
+        try {
+            List<Reservation> list = reservationMapper.getReservationByOpenid(openid);
+            List<Object> reservation = new ArrayList<>();
+            for(Reservation r : list){
+                reservation.add(JSONObject.toJSON(r));
+            }
+            res.put("code",0);
+            res.put("data",reservation);
+        }catch (Exception e){
+            res.put("code",code);
+        }
+        return JSONObject.toJSONString(res);
     }
 
     @PostMapping("/queryReservationByPatientId")

@@ -4,9 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.unluckyworker.appointment.dao.ReservationMapper">
     <insert id="addReservation" parameterType="Reservation">
-        insert into test.reservation (did, pid, visitdate, visittime, paytime, pname, pphone, paddress)
-            values (#{did},#{pid},#{visitdate},#{visittime},#{paytime},#{pname},#{pphone},#{paddress})
+        insert into test.reservation (did, pid, visitdate, visittime, paytime, pname, pphone, amount, openid, sex, age)
+            values (#{did},#{pid},#{visitdate},#{visittime},#{paytime},#{pname},#{pphone},#{amount},#{openid},#{sex},#{age})
     </insert>
+
+    <select id="getReservationByOpenid" resultType="Reservation">
+        select * from test.reservation where openid = #{openid}
+    </select>
 
     <select id="queryReservationByPatientId" resultType="Reservation">
         select * from test.reservation where pid = #{pid}
